@@ -30,8 +30,8 @@ jobs:
       - name: Build and upload
         run: bundle exec fastlane ios custom_lane
         env:
-          MATCH_KEYCHAIN_NAME: : ${{Secrets.MATCH_KEYCHAIN_NAME}}
-          MATCH_KEYCHAIN_PASSWORD: : ${{Secrets.MATCH_KEYCHAIN_PASSWORD}}
+          MATCH_KEYCHAIN_NAME: ${{Secrets.MATCH_KEYCHAIN_NAME}}
+          MATCH_KEYCHAIN_PASSWORD: ${{Secrets.MATCH_KEYCHAIN_PASSWORD}}
           MATCH_PASSWORD: ${{Secrets.MATCH_PASSWORD}}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{Secrets.MATCH_GIT_BASIC_AUTHORIZATION}}
           APP_STORE_CONNECT_API_KEY_CONTENT: ${{Secrets.APP_STORE_CONNECT_API_KEY_KEY}}
