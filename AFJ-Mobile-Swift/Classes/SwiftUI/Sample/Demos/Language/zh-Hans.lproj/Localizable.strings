@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  AFJ-Mobile-Swift
+
+  Created by viktyz on 2023/8/19.
+  
+*/
+
+"Home" = "首页";
+"Settings" = "设置";
+"Language" = "语言";

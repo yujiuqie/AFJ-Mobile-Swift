@@ -1,0 +1,64 @@
+name: iOS starter workflow
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: Build and Test default scheme using any available iPhone simulator
+    # runs-on: macos-latest
+    runs-on: macos-13
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1.6.0
+        with:
+          # xcode-version: latest-stable
+          xcode-version: '14.3.1'
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Import Code-Signing Certificates
+        uses: Apple-Actions/import-codesign-certs@v1
+        with: 
+          p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+          p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+      - name: Install gems
+        run: bundle install
+      - name: Install pods
+        run: bundle exec pod install
+      - name: Build and upload
+        run: bundle exec fastlane ios custom_lane
+        env:
+          MATCH_PASSWORD: ${{Secrets.MATCH_PASSWORD}}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{Secrets.MATCH_GIT_BASIC_AUTHORIZATION}}
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{Secrets.APP_STORE_CONNECT_API_KEY_KEY}}
+          APP_STORE_CONNECT_ISSUER_ID: ${{Secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID}}
+          APP_STORE_CONNECT_API_KEY_ID: ${{Secrets.APP_STORE_CONNECT_API_KEY_KEY_ID}}
+      # - name: Set Default Scheme
+      #   run: |
+      #     default=AFJ-Mobile-Swift
+      #     echo $default | cat >default
+      #     echo Using default scheme: $default
+      # - name: Build
+      #   env:
+      #     scheme: ${{ 'default' }}
+      #     platform: ${{ 'iOS Simulator' }}
+      #   run: |
+      #     # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
+      #     device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
+      #     if [ $scheme = default ]; then scheme=$(cat default); fi
+      #     if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+      #     file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+      #     xcodebuild -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+      # - name: Test
+      #   env:
+      #     scheme: ${{ 'default' }}
+      #     platform: ${{ 'iOS Simulator' }}
+      #   run: |
+      #     # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
+      #     device="iPhone 14"
+      #     if [ $scheme = default ]; then scheme=$(cat default); fi
+      #     if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+      #     file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+      #     xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"

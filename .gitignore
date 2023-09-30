@@ -1,0 +1,206 @@
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## User settings
+xcuserdata/
+
+## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
+*.xcscmblueprint
+*.xccheckout
+
+## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
+build/
+DerivedData/
+*.moved-aside
+
+!**/*.xcodeproj
+!**/*.pbxproj
+!**/*.xcworkspacedata
+!**/*.xcsettings
+!**/*.xcscheme
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+**/.xcode.env.local
+
+# Gradle
+/build/
+/packages/react-native-gradle-plugin/build/
+/packages/rn-tester/build
+/packages/rn-tester/android/app/.cxx/
+/packages/rn-tester/android/app/build/
+/packages/rn-tester/android/app/gradle/
+/packages/rn-tester/android/app/gradlew
+/packages/rn-tester/android/app/gradlew.bat
+/ReactAndroid/build/
+/ReactAndroid/.cxx/
+/ReactAndroid/gradle/
+/ReactAndroid/gradlew
+/ReactAndroid/gradlew.bat
+/ReactAndroid/hermes-engine/build/
+/ReactAndroid/hermes-engine/.cxx/
+/template/android/app/build/
+/template/android/build/
+
+# Buck
+.buckd
+buck-out
+/.lsp.buckd
+/.lsp-buck-out
+/ReactAndroid/src/main/jni/prebuilt/lib/
+/ReactAndroid/src/main/gen
+
+# Android Studio
+.project
+.settings
+.classpath
+
+# Watchman
+.watchmanconfig
+
+# Android
+.idea
+.gradle
+local.properties
+*.iml
+/android/
+
+# Node
+node_modules
+*.log
+.nvm
+/bots/node_modules/
+package-lock.json
+
+# OS X
+.DS_Store
+
+# Test generated files
+/ReactAndroid/src/androidTest/assets/AndroidTestBundle.js
+*.js.meta
+
+/coverage
+/third-party
+
+# Root dir shouldn't have Xcode project
+# /*.xcodeproj
+
+# ReactCommon subdir shouldn't have Xcode project
+/ReactCommon/**/*.xcodeproj
+
+# Libs that shouldn't have Xcode project
+/Libraries/FBLazyVector/**/*.xcodeproj
+/Libraries/RCTRequired/**/*.xcodeproj
+/React/CoreModules/**/*.xcodeproj
+/React/FBReactNativeSpec/**/*.xcodeproj
+/packages/react-native-codegen/**/*.xcodeproj
+
+# Ruby Gems (Bundler)
+/vendor
+/template/vendor
+
+# iOS / CocoaPods
+/template/ios/build/
+/template/ios/Pods/
+/template/ios/Podfile.lock
+/packages/rn-tester/Gemfile.lock
+
+# Ignore RNTester specific Pods, but keep the __offline_mirrors__ here.
+/packages/rn-tester/Pods/*
+!/packages/rn-tester/Pods/__offline_mirrors__
+
+# react-native-codegen
+/React/FBReactNativeSpec/FBReactNativeSpec
+/packages/react-native-codegen/lib
+/ReactCommon/react/renderer/components/rncore/
+/packages/rn-tester/NativeModuleExample/ScreenshotManagerSpec*
+
+# Additional SDKs
+/sdks/download
+/sdks/hermes
+/sdks/hermesc
+
+# Visual studio
+.vscode
+.vs
+
+# Android memory profiler files
+*.hprof
+
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+#
+# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+# Packages/
+# Package.pins
+# Package.resolved
+# *.xcodeproj
+#
+# Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
+# hence it is not needed unless you have added a package configuration file to your project
+# .swiftpm
+
+.build/
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+Pods/
+#
+# Add this line if you want to avoid checking in source code from the Xcode workspace
+*.xcworkspace
+
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build/
+
+# Accio dependency management
+Dependencies/
+.accio/
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo.
+# Instead, use fastlane to re-generate the screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Injection
+#
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
+
+iOSInjectionProject/
+
+default
+test.sh
