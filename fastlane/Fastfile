@@ -18,12 +18,29 @@ default_platform(:ios)
 platform :ios do
   desc "Description of what the lane does"
   before_all do
+    ENV['MATCH_KEYCHAIN_NAME'] = "AFJ-Mobile-Swift-CI"
+    ENV['MATCH_KEYCHAIN_PASSWORD'] = ENV['MATCH_KEYCHAIN_NAME']
     cocoapods
   end
 
   desc "Sync certificates"
    lane :sync_certificates do
-     match(type: "development",readonly: true)
+
+    create_keychain(
+      name:ENV['MATCH_KEYCHAIN_NAME'],
+      password:ENV['MATCH_KEYCHAIN_PASSWORD'],
+      default_keychain:true,
+      unlock:true,
+      timeout:3600,
+      add_to_search_list:true
+      )
+
+     match(
+      type: "development",
+      readonly: true,
+      keychain_name:ENV['MATCH_KEYCHAIN_NAME'],
+      keychain_password:ENV['MATCH_KEYCHAIN_PASSWORD']
+      )
    end
 
   lane :custom_lane do

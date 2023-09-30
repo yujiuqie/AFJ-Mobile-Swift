@@ -1323,6 +1323,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AFJ-Mobile-Swift/Pods-AFJ-Mobile-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		DF625B13F1E181A72E86CEC3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
